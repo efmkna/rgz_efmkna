@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Главная{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    {% block styles %}{% endblock %}
+    <style>
+        body {
+            background: url('{{ url_for('static', filename='images/back.jpg') }}') no-repeat center center fixed;
+            background-size: cover;
+            
+            width: 100%;
+            height: 100%
+        }
+ 
+        .content {
+            position: relative;
+            z-index: 1;
+            background: rgba(249, 212, 233, 0.797); 
+            padding: 20px ;
+            border-radius: 10px;
+            margin: 50px auto;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .username {
+            text-decoration: underline;
+            font-size: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="main">
+        <header>
+            <div>
+                <nav>
+                    <a href="/">Главная</a>
+                    {% if session.get('username') %}
+                        <a href="/dating">Знакомиться</a>
+                    {% endif %}
+                </nav>
+            </div>
+            {% if session.get('username') %}
+                <span>Добрый день, <a href="/profile" class="username">{{ session.get('username') }}</a> </span>
+                <div class="auth-buttons">
+                    <a href="/logout">Выйти</a>
+                </div>
+            {% else %}
+                <div class="auth-buttons">
+                    <a href="/login">Войти</a>
+                </div>
+            {% endif %}
+        </header>
+        
+        
+        <main>
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+        <footer>
+            &copy; Ефимкина Софья, ФБИ-24, 3 курс, 2024
+        </footer>
+    </div>
+</body>
+</html>

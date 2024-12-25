@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Авторизация{% endblock %}
+
+{% block styles %}
+<style>
+    h1 {
+        padding-bottom: 20px;
+    }
+    form {
+        width: 500px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    label {
+        margin-bottom: 5px;
+        color: #4a4a4a;
+        font-weight: bold;
+    }
+    
+    input, select, button {
+        margin-bottom: 15px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #dcdcdc;
+        border-radius: 5px;
+    }
+    
+    button {
+        align-self: flex-end;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>Войти в систему</h1>
+<form action="/login" method="POST">
+    <label for="username">Логин:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <button type="submit">Войти</button>
+</form>
+{% endblock %}

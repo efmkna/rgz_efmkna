@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}Знакомства{% endblock %}
+
+{% block styles %}
+<style>
+    h1 {
+        padding-bottom: 20px;
+    }
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+    .card {
+        width: 250px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+    .card h3 {
+        margin: 10px 0;
+        font-size: 1.5em;
+        color: #333;
+    }
+    .card p {
+        margin: 10px;
+        color: #666;
+    }
+    .pagination {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .pagination a {
+        padding: 10px 20px;
+        background-color: rgb(254, 234, 245);
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin: 0 5px;
+        text-decoration: none;
+        color: #333;
+        transition: background-color 0.3s ease;
+    }
+    .pagination a:hover {
+        background-color: #e3cbde;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>Знакомства</h1>
+<div class="card-container">
+    {% for user in users %}
+    <div class="card">
+        <img src="{{ url_for('get_photo', user_id=user.id) }}" alt="Фото">
+        <h3>{{ user.name }}, {{ user.age }}</h3>
+        <p>{{ user.about }}</p>
+    </div>
+    {% endfor %}
+</div>
+<div class="pagination">
+    {% if page > 1 %}
+    <a href="/dating?page={{ page - 1 }}">Назад</a>
+    {% endif %}
+    {% if next_page %}
+    <a href="/dating?page={{ next_page }}">Вперед</a>
+    {% endif %}
+</div>
+{% endblock %}

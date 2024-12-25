@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% if employee %}Редактировать сотрудника{% else %}Добавить сотрудника{% endif %}
+{% endblock %}
+
+{% block styles %}
+<style>
+    h1 {
+        padding-bottom: 20px;
+    }
+    form {
+        width: 500px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        background-color: #f9f9f9; 
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        height: auto; 
+    }
+    
+    label {
+        margin-bottom: 5px;
+        color: #4a4a4a;
+        font-weight: bold;
+    }
+    
+    input, select, button {
+        margin-bottom: 15px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #dcdcdc;
+        border-radius: 5px;
+    }
+    
+    button {
+        align-self: flex-end;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>
+    {% if employee %}Редактировать свою анкету{% else %}Зарегистрироваться{% endif %}
+</h1>
+<form action="/register" method="POST" enctype="multipart/form-data">
+    <label for="login">Логин:</label>
+    <input type="text" id="login" name="login" required>
+    <br>
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <label for="name">Как Вас зовут?:</label>
+    <input type="text" id="name" name="name" required>
+    <br>
+    <label for="gender">Ваш пол:</label>
+    <select id="gender" name="gender" required>
+        <option value="Мужчина">Парень</option>
+        <option value="Женщина">Девушка</option>
+    </select>
+    <br>
+    <label for="looking_for">Кого Вы ищете?:</label>
+    <select id="looking_for" name="looking_for" required>
+        <option value="Мужчина">Парня</option>
+        <option value="Женщина">Девушку</option>
+    </select>
+    <br>
+    <label for="birth_date">Дата рождения:</label>
+    <input type="date" id="birth_date" name="birth_date" required>
+    <br>
+    <label for="photo">Загрузите фотографию:</label>
+    <input type="file" id="photo" name="photo" accept="image/*">
+    <br>
+    <label for="about">Напишите пару слов о себе (необязательно):</label>
+    <textarea id="about" name="about" rows="3" style="width: 100%; resize: vertical;"></textarea>
+    <br>
+    <label for="active">Активен в поиске:</label>
+    <input type="checkbox" id="active" name="active">
+    <br>
+    <button type="submit">Зарегистрироваться</button>
+</form>
+
+{% endblock %}

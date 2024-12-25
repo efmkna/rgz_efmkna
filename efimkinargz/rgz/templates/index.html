@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block styles %}
+<style>  
+    h1 {
+        position: relative;
+        font-size: 36px;
+        text-align: center;
+        color: #4a4a4a; 
+        z-index: 2;
+    }
+    
+    a.button {
+        position: relative;
+        margin-top: 20px;
+        z-index: 2;
+    }
+    
+    .welcome-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        justify-content: flex-start; 
+        margin-top: 50px;
+        margin-bottom: 40px;
+    }
+    
+    .welcome-text {
+        font-size: 36px;
+        margin: 0;
+        text-align: center; /
+    }
+    
+    .company-name {
+        display: block;
+        font-weight: bold;
+        font-size: 42px;
+        color: #8b005f;
+        margin-top: 10px;
+    }
+    
+    .welcome-button {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 15px 30px;
+        font-size: 20px;
+        color: white;
+        background: linear-gradient(to right, #8b005f, #6d004b); 
+        text-decoration: none;
+        border-radius: 5px;
+        text-align: center;
+        transition: background 0.3s ease;
+        border-radius: 30px;
+    }
+    
+    .welcome-button:hover {
+        background: linear-gradient(to right, #6d004b, #8b005f); 
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="welcome-container">
+    <h1 class="welcome-text">
+        Добро пожаловать на сайт знакомств<br>
+        <span class="company-name">Знакомства ФБИ-24</span>
+    </h1>
+    {% if session.get('username')%}
+        <a href="/dating" class="welcome-button">Знакомиться</a>
+    {% else %}
+        <a href="/register" class="welcome-button">Регистрация</a>
+    {% endif %}
+</div>
+{% endblock %}

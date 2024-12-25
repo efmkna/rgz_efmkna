@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% if employee %}Редактировать сотрудника{% else %}Добавить сотрудника{% endif %}
+{% endblock %}
+
+{% block styles %}
+<style>
+    h1 {
+        padding-bottom: 20px;
+    }
+    form {
+        width: 500px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        background-color: #f9f9f9; 
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        height: auto; 
+    }
+    
+    label {
+        margin-bottom: 5px;
+        color: #4a4a4a;
+        font-weight: bold;
+    }
+    
+    input, select, button {
+        margin-bottom: 15px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #dcdcdc;
+        border-radius: 5px;
+    }
+    
+    button {
+        align-self: flex-end;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>Редактировать свой профиль</h1>
+<form action="/profile" method="POST" enctype="multipart/form-data">
+    <label for="name">Как Вас зовут?</label>
+    <input type="text" id="name" name="name" value="{{ user.name }}" required>
+    <br>
+    <label for="gender">Ваш пол:</label>
+    <select id="gender" name="gender" required>
+        <option value="Мужчина" {% if user.gender == "Мужчина" %}selected{% endif %}>Парень</option>
+        <option value="Женщина" {% if user.gender == "Женщина" %}selected{% endif %}>Девушка</option>
+    </select>
+    <br>
+    <label for="looking_for">Кого Вы ищете?</label>
+    <select id="looking_for" name="looking_for" required>
+        <option value="Мужчина" {% if user.seeking == "Мужчина" %}selected{% endif %}>Парня</option>
+        <option value="Женщина" {% if user.seeking == "Женщина" %}selected{% endif %}>Девушку</option>
+    </select>
+    <br>
+    <label for="birth_date">Дата рождения:</label>
+    <input type="date" id="birth_date" name="birth_date" value="{{ user.birth_date }}" required>
+    <br>
+    <label for="photo">Фотография:</label>
+    <img src="{{ url_for('get_photo', user_id=user.id) }}" alt="Фото" width="100"><br>
+    <input type="file" id="photo" name="photo" accept="image/*">
+    <br>
+    <label for="about">О себе:</label>
+    <textarea id="about" name="about" rows="3">{{ user.about }}</textarea>
+    <br>
+    <label for="active">Активен в поиске:</label>
+    <input type="checkbox" id="active" name="active" {% if user.active %}checked{% endif %}>
+    <br>
+    <button type="submit">Сохранить изменения</button>
+</form>
+<br>
+<form action="/delete_profile" method="POST">
+    <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить свой профиль?')">Удалить профиль</button>
+</form>
+{% endblock %}

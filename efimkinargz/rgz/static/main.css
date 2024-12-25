@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffebf5; 
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header, footer {
+    margin: 0;
+    background-color: #8b005f; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    height: 60px;
+    width: 100%;
+    z-index: 1000;
+}
+
+header {
+    position: fixed; 
+    top: 0;
+    left: 0;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+header img {
+    height: 40px;
+}
+
+header .auth-buttons a {
+    text-decoration: none;
+    color: #4a4a4a; 
+    background-color: rgb(249, 212, 233); 
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+header .auth-buttons a:hover {
+    background-color: #d3c2d0; 
+}
+
+header nav {
+    display: flex;
+    gap: 20px;
+    padding: 15px 0;
+}
+
+header nav a {
+    color: #ebedee;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+header nav a:hover {
+    background-color: #6d004b;
+}
+
+footer {
+    text-align: center;
+    font-size: 14px;
+    color: #ebedee; 
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #dcdcdc;
+    margin-top: auto; 
+    margin: 0;
+}
+
+main {
+    flex: 1;
+    margin-top: 80px;
+    margin-bottom: 80px; 
+    padding: 20px;
+    overflow-y: auto; 
+}
+
+a {
+    text-decoration: none;
+    color: #ebedee;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.main {
+    min-height: calc(100vh - 120px); 
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
+    min-height: 100%;
+}
+
+/* Кнопки */
+button, a.button {
+    background-color: #d7dde5; 
+    color: #333;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+button:hover, a.button:hover {
+    background-color: #c2c8d3; 
+}
+
+span {
+    color: #ebedee;
+}
